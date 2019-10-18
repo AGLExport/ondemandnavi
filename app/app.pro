@@ -1,6 +1,6 @@
 TARGET = navigation
 QT = quick qml aglextras
-PKGCONFIG += qlibhomescreen qlibwindowmanager
+PKGCONFIG += qlibhomescreen qlibwindowmanager qtappfw
 
 QT += positioning
 QT += core
