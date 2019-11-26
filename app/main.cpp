@@ -18,6 +18,7 @@
 #include <qlibwindowmanager.h>
 #include <qlibhomescreen.h>
 #include <string>
+#include <unistd.h>
 #include <QtCore/QDebug>
 #include <QtCore/QCommandLineParser>
 #include <QtCore/QUrlQuery>
@@ -48,6 +49,13 @@ int main(int argc, char *argv[])
 	parser.addHelpOption();
 	parser.addVersionOption();
 	parser.process(app);
+
+	QString path("/var/run/user/");
+	path.append(QString::number(getuid()));
+	path.append("/usrshr/cache");
+
+	// make cache in generic location to allow sharing of tiles
+	qputenv("XDG_CACHE_HOME", QByteArray::fromStdString(path.toStdString()));
 
 	// Load qml
 	QQmlApplicationEngine engine;
