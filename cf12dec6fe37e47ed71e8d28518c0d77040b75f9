@@ -1,0 +1,10 @@
+Verified+1: Jenkins Job builder account <agl-jobbuilder@automotivelinux.org>
+ci-image-build+1: Jenkins Job builder account <agl-jobbuilder@automotivelinux.org>
+ci-image-boot-test+1: Jenkins Job builder account <agl-jobbuilder@automotivelinux.org>
+ci-gracetime+1: Jenkins Job builder account <agl-jobbuilder@automotivelinux.org>
+Code-Review+2: Jan-Simon Moeller <jsmoeller@linuxfoundation.org>
+Submitted-by: Jan-Simon Moeller <jsmoeller@linuxfoundation.org>
+Submitted-at: Wed, 27 Nov 2019 16:05:29 +0000
+Reviewed-on: https://gerrit.automotivelinux.org/gerrit/c/apps/ondemandnavi/+/23012
+Project: apps/ondemandnavi
+Branch: refs/heads/halibut
