@@ -1,0 +1,11 @@
+Verified+1: Jenkins Job builder account <agl-jobbuilder@automotivelinux.org>
+ci-image-build+1: Jenkins Job builder account <agl-jobbuilder@automotivelinux.org>
+ci-image-boot-test+1: Jenkins Job builder account <agl-jobbuilder@automotivelinux.org>
+Code-Review+1: Frédéric Marec <frederic.marec@iot.bzh>
+Code-Review+2: Jan-Simon Moeller <jsmoeller@linuxfoundation.org>
+ci-gracetime+1: Jenkins Job builder account <agl-jobbuilder@automotivelinux.org>
+Submitted-by: Jan-Simon Moeller <jsmoeller@linuxfoundation.org>
+Submitted-at: Mon, 23 Mar 2020 17:40:33 +0000
+Reviewed-on: https://gerrit.automotivelinux.org/gerrit/c/apps/ondemandnavi/+/24270
+Project: apps/ondemandnavi
+Branch: refs/heads/master
