@@ -1,6 +1,6 @@
 TARGET = navigation
 QT = quick qml
-PKGCONFIG += qlibhomescreen qlibwindowmanager qtappfw
+PKGCONFIG += qlibhomescreen qlibwindowmanager qtappfw-navi
 
 QT += positioning
 QT += core
