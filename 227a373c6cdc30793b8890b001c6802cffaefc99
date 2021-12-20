@@ -1,0 +1,10 @@
+Verified+1: Jenkins Job builder account
+ci-image-build+1: Jenkins Job builder account
+ci-image-boot-test+1: Jenkins Job builder account
+ci-gracetime+1: Jenkins Job builder account
+Code-Review+2: Scott Murray <scott.murray@konsulko.com>
+Submitted-by: Scott Murray <scott.murray@konsulko.com>
+Submitted-at: Mon, 20 Dec 2021 14:25:59 +0000
+Reviewed-on: https://gerrit.automotivelinux.org/gerrit/c/apps/ondemandnavi/+/27011
+Project: apps/ondemandnavi
+Branch: refs/heads/master
