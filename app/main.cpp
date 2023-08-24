@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 	context->setContextProperty("fileOperation", &file);
 
 	VehicleSignalsConfig vsConfig("navigation");
-	Navigation *navigation = new Navigation(new VehicleSignals(vsConfig), context);
+	Navigation *navigation = new Navigation(new VehicleSignals(vsConfig), true, context);
 	context->setContextProperty("navigation", navigation);
 
 	MarkerModel model;
