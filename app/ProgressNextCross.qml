@@ -1,6 +1,5 @@
-import QtQuick 2.0
-import QtQuick.Controls 1.5
-import QtQuick.Controls.Styles 1.4
+import QtQuick
+import QtQuick.Controls
 
 Item {
 	id: progress_next_cross
@@ -24,14 +23,56 @@ Item {
 		id: bar
 		width: 25
 		height: 100
-        orientation: Qt.Vertical
+        rotation: 90
         value: 0
-        minimumValue: 0
-        maximumValue: 300
+        from: 0
+        to: 300
 
-        style: ProgressBarStyle {
-            progress: Rectangle {
-                color: "green"
+        background: Rectangle {
+            implicitWidth: 200
+            implicitHeight: 6
+            color: "#e6e6e6"
+            radius: 3
+        }
+
+        contentItem: Item {
+            implicitWidth: 200
+            implicitHeight: 4
+
+            // Progress indicator for determinate state.
+            Rectangle {
+                width: bar.visualPosition * parent.width
+                height: parent.height
+                radius: 2
+                color: "#17a81a"
+                visible: !bar.indeterminate
+            }
+
+            // Scrolling animation for indeterminate state.
+            Item {
+                anchors.fill: parent
+                visible: bar.indeterminate
+                clip: true
+
+                Row {
+                    spacing: 20
+
+                    Repeater {
+                        model: bar.width / 40 + 1
+
+                        Rectangle {
+                            color: "#17a81a"
+                            width: 20
+                            height: bar.height
+                        }
+                    }
+                    XAnimator on x {
+                        from: 0
+                        to: -40
+                        loops: Animation.Infinite
+                        running: bar.indeterminate
+                    }
+                }
             }
         }
 	}

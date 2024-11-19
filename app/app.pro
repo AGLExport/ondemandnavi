@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = navigation
-QT = core qml quick positioning
+QT = core qml quick positioning location
 CONFIG += c++11 link_pkgconfig
 
 PKGCONFIG += qtappfw-navigation qtappfw-vehicle-signals
