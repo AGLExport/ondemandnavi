@@ -40,21 +40,14 @@ ApplicationWindow {
     property real car_accumulated_distance : 0
     property real positionTimer_interval : fileOperation.getUpdateInterval() // set millisecond
     property real car_moving_distance : (car_driving_speed / 3.6) / (1000/positionTimer_interval) // Metric unit
+    property string maplibre_map_style : "https://tile.openstreetmap.jp/styles/openmaptiles/style.json"
 
     Plugin {
-            id: mapbox
-            name: "mapbox"
+            id: maplibre
+            name: "maplibre"
             PluginParameter {
-                name: "mapbox.access_token";
-                value: fileOperation.getMapAccessToken()
-            }
-            PluginParameter {
-                name: "mapbox.mapping.additional_map_ids"
-                value: fileOperation.getMapStyleUrls()
-            }
-            PluginParameter {
-                name: "mapbox.mapping.cache.directory"
-                value: fileOperation.getCachePath("mapbox")
+                name: "maplibre.map.styles"
+                value: maplibre_map_style
             }
     }
     Plugin {
@@ -112,7 +105,7 @@ ApplicationWindow {
 
         width: parent.width
         height: parent.height
-        plugin: fileOperation.isOSMEnabled() ? osm : mapbox
+        plugin: maplibre
         center: QtPositioning.coordinate(car_position_lat, car_position_lon)
         zoomLevel: default_zoom_level
         bearing: 0
@@ -733,25 +726,5 @@ ApplicationWindow {
         anchors.topMargin: 25
         anchors.left: img_destination_direction.right
         anchors.leftMargin: 20
-	}
-
-    Image {
-        visible: map.plugin.name === "mapbox"
-        anchors.left: parent.left
-        anchors.leftMargin: 35
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
-        scale: 1.5
-        source: "images/mapbox_logo.svg"
-    }
-
-    Label {
-        visible: map.plugin.name === "mapbox"
-        font.pixelSize: 18
-        anchors.right: parent.right
-        anchors.rightMargin: 25
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
-        text: "<a href='https://www.mapbox.com/about/maps'>© Mapbox | </a> <a href='http://www.openstreetmap.org/copyright'>© OpenStreetMap | </a> <a href='https://www.mapbox.com/map-feedback/'><strong>Improve this map</strong>"
 	}
 }
