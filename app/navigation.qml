@@ -102,6 +102,7 @@ ApplicationWindow {
         property int jitterThreshold : 30
         property variant currentpostion : QtPositioning.coordinate(car_position_lat, car_position_lon)
         property int last_segmentcounter : -1
+        property geoCoordinate startCentroid
 
         width: parent.width
         height: parent.height
