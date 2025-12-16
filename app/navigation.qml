@@ -256,7 +256,9 @@ ApplicationWindow {
         RouteModel {
             id: routeModel
             objectName: "routeModel"
-            plugin: map.plugin
+            plugin : Plugin {
+                name: "osm"
+            }
             query:  RouteQuery {
                 id: routeQuery
             }
