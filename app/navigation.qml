@@ -468,6 +468,33 @@ ApplicationWindow {
 
             }
         }
+        PinchHandler {
+            id: pinch
+            target: null
+            onActiveChanged: if (active) {
+                map.startCentroid = map.toCoordinate(pinch.centroid.position, false)
+                console.log("PinchHandler:onActiveChanged")
+            }
+            onScaleChanged: (delta) => {
+                map.zoomLevel += Math.log2(delta)
+                map.alignCoordinateToPoint(map.startCentroid, pinch.centroid.position)
+                console.log("PinchHandler:onScaleChanged")
+            }
+            onRotationChanged: (delta) => {
+                map.bearing -= delta
+                map.alignCoordinateToPoint(map.startCentroid, pinch.centroid.position)
+                console.log("PinchHandler:onRotationChanged")
+            }
+            //grabPermissions: PointerHandler.TakeOverForbidden
+        }
+        DragHandler {
+            id: drag
+            target: null
+            onTranslationChanged: (delta) => {
+                map.pan(-delta.x, -delta.y)
+                console.log("DragHandler:onTranslationChanged")
+            }
+        }
 
         function updatePositon() {
             if (!routeModel.get(0))
