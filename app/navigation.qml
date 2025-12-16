@@ -443,25 +443,25 @@ ApplicationWindow {
             acceptedButtons: Qt.LeftButton | Qt.RightButton
 
             onPressed : {
-                map.lastX = mouse.x
-                map.lastY = mouse.y
-                map.pressX = mouse.x
-                map.pressY = mouse.y
-                lastCoordinate = map.toCoordinate(Qt.point(mouse.x, mouse.y))
+                map.lastX = mouseX
+                map.lastY = mouseY
+                map.pressX = mouseX
+                map.pressY = mouseY
+                lastCoordinate = map.toCoordinate(Qt.point(mouseX, mouseY))
             }
 
             onPositionChanged: {
-                if (mouse.button === Qt.LeftButton) {
-                    map.lastX = mouse.x
-                    map.lastY = mouse.y
+                if ((pressedButtons & Qt.LeftButton) === true) {
+                    map.lastX = mouseX
+                    map.lastY = mouseY
                 }
             }
 
             onPressAndHold:{
                 if((btn_guidance.state !== "onGuide") && (btn_guidance.state !== "Routing"))
                 {
-                    if (Math.abs(map.pressX - mouse.x ) < map.jitterThreshold
-                            && Math.abs(map.pressY - mouse.y ) < map.jitterThreshold) {
+                    if (Math.abs(map.pressX - mouseX ) < map.jitterThreshold
+                            && Math.abs(map.pressY - mouseY ) < map.jitterThreshold) {
                         map.addDestination(lastCoordinate)
                     }
                 }
