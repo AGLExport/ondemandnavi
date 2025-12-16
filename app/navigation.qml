@@ -102,6 +102,7 @@ ApplicationWindow {
         property int jitterThreshold : 30
         property variant currentpostion : QtPositioning.coordinate(car_position_lat, car_position_lon)
         property int last_segmentcounter : -1
+        property geoCoordinate startCentroid
 
         width: parent.width
         height: parent.height
@@ -445,29 +446,51 @@ ApplicationWindow {
             acceptedButtons: Qt.LeftButton | Qt.RightButton
 
             onPressed : {
-                map.lastX = mouse.x
-                map.lastY = mouse.y
-                map.pressX = mouse.x
-                map.pressY = mouse.y
-                lastCoordinate = map.toCoordinate(Qt.point(mouse.x, mouse.y))
+                map.lastX = mouseX
+                map.lastY = mouseY
+                map.pressX = mouseX
+                map.pressY = mouseY
+                lastCoordinate = map.toCoordinate(Qt.point(mouseX, mouseY))
             }
 
             onPositionChanged: {
-                if (mouse.button === Qt.LeftButton) {
-                    map.lastX = mouse.x
-                    map.lastY = mouse.y
+                if ((pressedButtons & Qt.LeftButton) === true) {
+                    map.lastX = mouseX
+                    map.lastY = mouseY
                 }
             }
 
             onPressAndHold:{
                 if((btn_guidance.state !== "onGuide") && (btn_guidance.state !== "Routing"))
                 {
-                    if (Math.abs(map.pressX - mouse.x ) < map.jitterThreshold
-                            && Math.abs(map.pressY - mouse.y ) < map.jitterThreshold) {
+                    if (Math.abs(map.pressX - mouseX ) < map.jitterThreshold
+                            && Math.abs(map.pressY - mouseY ) < map.jitterThreshold) {
                         map.addDestination(lastCoordinate)
                     }
                 }
 
+            }
+        }
+        PinchHandler {
+            id: pinch
+            target: null
+            onActiveChanged: if (active) {
+                map.startCentroid = map.toCoordinate(pinch.centroid.position, false)
+            }
+            onScaleChanged: (delta) => {
+                map.zoomLevel += Math.log2(delta)
+                map.alignCoordinateToPoint(map.startCentroid, pinch.centroid.position)
+            }
+            onRotationChanged: (delta) => {
+                map.bearing -= delta
+                map.alignCoordinateToPoint(map.startCentroid, pinch.centroid.position)
+            }
+        }
+        DragHandler {
+            id: drag
+            target: null
+            onTranslationChanged: (delta) => {
+                map.pan(-delta.x, -delta.y)
             }
         }
 
