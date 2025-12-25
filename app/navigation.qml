@@ -752,4 +752,14 @@ ApplicationWindow {
         anchors.left: img_destination_direction.right
         anchors.leftMargin: 20
 	}
+
+    Label {
+        visible: map.plugin.name === "maplibre"
+        font.pixelSize: 18
+        anchors.right: parent.right
+        anchors.rightMargin: 25
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
+        text: "MapLibre | ? OpenMapTiles ? OpenStreetMap contributors"
+    }
 }
